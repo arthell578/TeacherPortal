@@ -4,7 +4,7 @@ namespace TeacherPortal.Models
 {
     public class TeacherPortalDbContext : DbContext
     {
-        protected TeacherPortalDbContext(DbContextOptions<TeacherPortalDbContext> options) : base(options)
+        public TeacherPortalDbContext(DbContextOptions<TeacherPortalDbContext> options) : base(options)
         {
         }
 
