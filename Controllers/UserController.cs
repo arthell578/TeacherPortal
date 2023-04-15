@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using TeacherPortal.Models;
 
 namespace TeacherPortal.Controllers
 {
@@ -7,9 +9,9 @@ namespace TeacherPortal.Controllers
     public class UserController
     {
         [HttpPost("/register")]
-        public ActionResult Register([FromBody] UserRegisterDTO)
+        public ActionResult Register([FromBody] RegisterUserDTO registerUserDTO)
         {
-
+            return Ok(registerUserDTO);
         }
     }
 }
