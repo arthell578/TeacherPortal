@@ -1,12 +1,12 @@
 ﻿using TeacherPortal.Models;
 
-namespace TeacherPortal.Services
+namespace TeacherPortal.Interfaces
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly TeacherPortalDbContext _dbContext;
 
-        public UserService(TeacherPortalDbContext dbContext) 
+        public UserService(TeacherPortalDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -14,8 +14,8 @@ namespace TeacherPortal.Services
         {
             var newUser = new User()
             {
-                Email= registerUserDTO.Email,
-                UserRole= registerUserDTO.UserRole,
+                Email = registerUserDTO.Email,
+                UserRole = registerUserDTO.UserRole,
             };
 
             _dbContext.Users.Add(newUser);
