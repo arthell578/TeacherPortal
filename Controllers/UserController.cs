@@ -19,7 +19,8 @@ namespace TeacherPortal.Controllers
         [HttpPost("/register")]
         public ActionResult Register([FromBody] RegisterUserDTO registerUserDTO)
         {
-
+            _userService.Register(registerUserDTO);
+            return Ok();
         }
     }
 }
