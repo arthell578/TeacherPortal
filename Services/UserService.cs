@@ -17,7 +17,8 @@ namespace TeacherPortal.Interfaces
                 Email = registerUserDTO.Email,
                 UserRole = registerUserDTO.UserRole,
                 FirstName= registerUserDTO.FirstName,
-                LastName= registerUserDTO.LastName
+                LastName= registerUserDTO.LastName,
+                Password= registerUserDTO.Password
             };
 
             _dbContext.Users.Add(newUser);
