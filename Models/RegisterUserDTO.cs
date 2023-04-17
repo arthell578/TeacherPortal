@@ -9,6 +9,10 @@ namespace TeacherPortal.Models
         [Required]
         [MinLength(8)]
         public string Password { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         public UserRole UserRole { get; set; } = UserRole.Student;
     }
 }
