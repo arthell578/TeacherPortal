@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TeacherPortalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TeacherPortalDbContext")));
 
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
