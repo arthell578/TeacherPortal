@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TeacherPortal;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
@@ -12,7 +14,26 @@ builder.Services.AddDbContext<TeacherPortalDbContext>(options =>
 
 var authenticationSettings = new AuthenticationSetting();
 
-builder.Configuration.GetSection("Authentication");
+builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+builder.Services.AddAuthentication(configureOptions => 
+{
+    configureOptions.DefaultAuthenticateScheme = "Bearer";
+    configureOptions.DefaultScheme = "Bearer";
+    configureOptions.DefaultChallengeScheme = "Bearer";
+}).AddJwtBearer(config =>
+    {
+        // disabled only for dev purposes
+        config.RequireHttpsMetadata = false;
+        config.SaveToken = true;
+        config.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidIssuer = authenticationSettings.JwtIssuer,
+            ValidAudience = authenticationSettings.JwtIssuer,
+            // private key generated based on jwt key
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
+        };
+    });
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
