@@ -21,8 +21,10 @@ namespace TeacherPortal.Interfaces
                 UserRole = registerUserDTO.UserRole,
                 FirstName= registerUserDTO.FirstName,
                 LastName= registerUserDTO.LastName,
-                Password= registerUserDTO.Password
             };
+
+            var hashedPassword = _passwordHasher.HashPassword(newUser, registerUserDTO.Password);
+            newUser.Password = hashedPassword;
 
             _dbContext.Users.Add(newUser);
             _dbContext.SaveChanges();
