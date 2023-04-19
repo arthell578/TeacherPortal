@@ -1,14 +1,17 @@
-﻿using TeacherPortal.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using TeacherPortal.Models;
 
 namespace TeacherPortal.Interfaces
 {
     public class UserService : IUserService
     {
         private readonly TeacherPortalDbContext _dbContext;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public UserService(TeacherPortalDbContext dbContext)
+        public UserService(TeacherPortalDbContext dbContext, IPasswordHasher<User> passwordHasher)
         {
             _dbContext = dbContext;
+            _passwordHasher = passwordHasher;
         }
         public void Register(RegisterUserDTO registerUserDTO)
         {
