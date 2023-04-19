@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TeacherPortal;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
 
@@ -8,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<TeacherPortalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TeacherPortalDbContext")));
+
+var authenticationSettings = new AuthenticationSetting();
+
+builder.Configuration.GetSection("Authentication");
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
