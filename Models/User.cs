@@ -21,7 +21,6 @@ namespace TeacherPortal.Models
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(40)]
         public string Password { get; set; }
 
         public UserRole UserRole { get; set; }
