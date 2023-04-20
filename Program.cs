@@ -14,6 +14,8 @@ builder.Services.AddDbContext<TeacherPortalDbContext>(options =>
 
 var authenticationSettings = new AuthenticationSetting();
 
+builder.Services.AddSingleton(authenticationSettings);
+
 builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
 
 builder.Services.AddAuthentication(configureOptions => 
