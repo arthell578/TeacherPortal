@@ -22,5 +22,11 @@ namespace TeacherPortal.Controllers
             _userService.Register(registerUserDTO);
             return Ok();
         }
+
+        [HttpPost("/login")]
+        public ActionResult Login([FromBody] LoginUserDTO loginUserDTO)
+        {
+
+        }
     }
 }
