@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
 
@@ -29,6 +31,21 @@ namespace TeacherPortal.Controllers
             string token = _userService.GenerateJwtToken(loginUserDTO);
 
             return Ok(token);
+        }
+
+        [HttpPost("/change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO changePasswordDTO)
+        {
+            var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            var result = await _userService.ChangePassword(userId, changePasswordDTO);
+
+            if (!result)
+            {
+                return BadRequest("Failed to change password.");
+            }
+            
+            return Ok();
         }
     }
 }
