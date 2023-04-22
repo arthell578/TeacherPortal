@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -74,6 +75,28 @@ namespace TeacherPortal.Interfaces
             var tokenHandler = new JwtSecurityTokenHandler();
 
             return tokenHandler.WriteToken(jwtToken);
+        }
+
+        public async Task<bool> ChangePassword(int userId, ChangePasswordDTO changePasswordDTO)
+        {
+            var user = await _dbContext.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (_passwordHasher.VerifyHashedPassword(user, user.Password, changePasswordDTO.OldPassword) == PasswordVerificationResult.Failed)
+            {
+                return false;
+            }
+
+            user.Password = _passwordHasher.HashPassword(user, changePasswordDTO.NewPassword);
+
+            _dbContext.Entry(user).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }
