@@ -18,6 +18,19 @@ namespace TeacherPortal.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public ActionResult<User> GetUserByID() 
+        {
+
+        }
+
+
+        [HttpGet]
+        public ActionResult<IEnumerable<User>> GetAllUsers()
+        {
+
+        }
+
         [HttpPost("/register")]
         public ActionResult Register([FromBody] RegisterUserDTO registerUserDTO)
         {
