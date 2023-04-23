@@ -103,9 +103,9 @@ namespace TeacherPortal.Interfaces
             return true;
         }
 
-        public async Task<UserDTO> GetUserByID(int id)
+        public UserDTO GetUserByID(int id)
         {
-            var user = await _dbContext.Users.FindAsync(id);
+            var user = _dbContext.Users.FindAsync(id);
 
             if(user == null) 
             {
@@ -115,9 +115,9 @@ namespace TeacherPortal.Interfaces
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<IEnumerable<UserDTO>> GetAllUsers()
+        public IEnumerable<UserDTO> GetAllUsers()
         {
-            var users = await _dbContext.Users.ToListAsync();
+            var users = _dbContext.Users.ToListAsync();
             return _mapper.Map<IEnumerable<UserDTO>>(users);
         }
     }

@@ -20,7 +20,7 @@ namespace TeacherPortal.Controllers
         }
 
         [HttpGet("/user/{id}")]
-        public  ActionResult<UserDTO> GetUserByID(int id)
+        public ActionResult<UserDTO> GetUserByID(int id)
         {
             var user = _userService.GetUserByID(id);
 

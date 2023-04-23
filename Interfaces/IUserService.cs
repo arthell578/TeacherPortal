@@ -7,8 +7,8 @@ namespace TeacherPortal.Interfaces
         void Register(RegisterUserDTO registerUserDTO);
         string GenerateJwtToken(LoginUserDTO loginUserDTO);
         Task<bool> ChangePassword(int userId, ChangePasswordDTO changePasswordDTO);
-        Task<UserDTO> GetUserByID(int id);
-        Task<IEnumerable<UserDTO>> GetAllUsers();
+        UserDTO GetUserByID(int id);
+        IEnumerable<UserDTO> GetAllUsers();
 
     }
 }
