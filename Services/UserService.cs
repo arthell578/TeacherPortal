@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,12 +15,15 @@ namespace TeacherPortal.Interfaces
         private readonly TeacherPortalDbContext _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSetting _authenticationSetting;
+        private readonly IMapper _mapper;
 
-        public UserService(TeacherPortalDbContext dbContext, IPasswordHasher<User> passwordHasher, AuthenticationSetting authenticationSetting)
+        public UserService(TeacherPortalDbContext dbContext, IPasswordHasher<User> passwordHasher, 
+                AuthenticationSetting authenticationSetting, IMapper mapper)
         {
             _dbContext = dbContext;
             _passwordHasher = passwordHasher;
             _authenticationSetting = authenticationSetting;
+            _mapper = mapper;
         }
         public void Register(RegisterUserDTO registerUserDTO)
         {
@@ -97,6 +101,24 @@ namespace TeacherPortal.Interfaces
             await _dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<UserDTO> GetUserByID(int id)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+
+            if(user == null) 
+            {
+                return null;
+            }
+
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        public async Task<IEnumerable<UserDTO>> GetAllUsers()
+        {
+            var users = await _dbContext.Users.ToListAsync();
+            return _mapper.Map<IEnumerable<UserDTO>>(users);
         }
     }
 }
