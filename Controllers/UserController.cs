@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,21 +13,23 @@ namespace TeacherPortal.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly AutoMapper _autoMapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper autoMapper)
         {
             _userService = userService;
+            _autoMapper = autoMapper;
         }
 
         [HttpGet]
-        public ActionResult<User> GetUserByID() 
+        public ActionResult<UserDTO> GetUserByID() 
         {
-
+            
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAllUsers()
+        public ActionResult<IEnumerable<UserDTO>> GetAllUsers()
         {
 
         }
