@@ -13,25 +13,31 @@ namespace TeacherPortal.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly AutoMapper _autoMapper;
 
-        public UserController(IUserService userService, IMapper autoMapper)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _autoMapper = autoMapper;
         }
 
-        [HttpGet]
-        public ActionResult<UserDTO> GetUserByID() 
+        [HttpGet("/user/{id}")]
+        public  ActionResult<UserDTO> GetUserByID(int id)
         {
-            
+            var user = _userService.GetUserByID(id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
 
-        [HttpGet]
+        [HttpGet("/user")]
         public ActionResult<IEnumerable<UserDTO>> GetAllUsers()
         {
-
+            var users = _userService.GetAllUsers();
+            return Ok(users);
         }
 
         [HttpPost("/register")]
