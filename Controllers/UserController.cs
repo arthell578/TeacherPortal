@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -16,6 +17,27 @@ namespace TeacherPortal.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpGet("/user/{id}")]
+        public ActionResult<UserDTO> GetUserByID(int id)
+        {
+            var user = _userService.GetUserByID(id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+
+        [HttpGet("/user")]
+        public ActionResult<IEnumerable<UserDTO>> GetAllUsers()
+        {
+            var users = _userService.GetAllUsers();
+            return Ok(users);
         }
 
         [HttpPost("/register")]
