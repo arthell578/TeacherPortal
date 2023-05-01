@@ -1,6 +1,18 @@
-﻿namespace TeacherPortal.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using TeacherPortal.Interfaces;
+
+namespace TeacherPortal.Controllers
 {
-    public class LessonController
+    [ApiController]
+    [Route("/api/[controller]")]
+
+    public class LessonController : ControllerBase
     {
+        private readonly ILessonService _lessonService;
+
+        public LessonController(ILessonService lessonService)
+        {
+            _lessonService = lessonService;
+        }
     }
 }
