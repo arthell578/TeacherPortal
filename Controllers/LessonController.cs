@@ -1,6 +1,12 @@
-﻿namespace TeacherPortal.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace TeacherPortal.Controllers
 {
-    public class LessonController
+    [ApiController]
+    public class LessonController : ControllerBase
     {
+        public LessonController()
+        {
+        }
     }
 }
