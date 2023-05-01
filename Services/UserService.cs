@@ -105,7 +105,7 @@ namespace TeacherPortal.Interfaces
 
         public UserDTO GetUserByID(int id)
         {
-            var user = _dbContext.Users.FindAsync(id);
+            var user = _dbContext.Users.Find(id);
 
             if(user == null) 
             {
@@ -117,7 +117,7 @@ namespace TeacherPortal.Interfaces
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            var users = _dbContext.Users.ToListAsync();
+            var users = _dbContext.Users.ToList();
             return _mapper.Map<IEnumerable<UserDTO>>(users);
         }
     }
