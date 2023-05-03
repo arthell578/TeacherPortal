@@ -6,6 +6,7 @@ using System.Text;
 using TeacherPortal;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
+using TeacherPortal.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddAuthentication(configureOptions =>
     });
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllers();
