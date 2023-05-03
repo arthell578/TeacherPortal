@@ -8,6 +8,8 @@ namespace TeacherPortal
         public APIMappingProfile()
         {
             CreateMap<User, UserDTO>();
+            CreateMap<CreateCourseDTO, Course>();
+            CreateMap<Course, CourseDTO>();
         }
     }
 }
