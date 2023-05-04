@@ -15,9 +15,6 @@ namespace TeacherPortal.Models
         [Required]
         public string Content { get; set; }
 
-        [MaxLength(255)]
-        public string AttachmentUrl { get; set; }
-
         [ForeignKey("Course")]
         public int CourseId { get; set; }
 
