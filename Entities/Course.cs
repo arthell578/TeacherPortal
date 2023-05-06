@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TeacherPortal.Models
+namespace TeacherPortal.Entities
 {
     public class Course
     {
