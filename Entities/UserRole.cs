@@ -1,4 +1,4 @@
-﻿namespace TeacherPortal.Models
+﻿namespace TeacherPortal.Entities
 {
     public enum UserRole
     {

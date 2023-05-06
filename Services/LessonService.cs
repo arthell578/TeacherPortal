@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TeacherPortal.Entities;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
 

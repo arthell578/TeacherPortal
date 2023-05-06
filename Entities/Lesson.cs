@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using TeacherPortal.Models;
 
-namespace TeacherPortal.Models
+namespace TeacherPortal.Entities
 {
     public class Lesson
     {

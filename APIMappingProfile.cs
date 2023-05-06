@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TeacherPortal.Entities;
 using TeacherPortal.Models;
 
 namespace TeacherPortal

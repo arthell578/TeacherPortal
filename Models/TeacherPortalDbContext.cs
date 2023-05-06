@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TeacherPortal.Entities;
 
 namespace TeacherPortal.Models
 {

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
 using TeacherPortal;
+using TeacherPortal.Entities;
 using TeacherPortal.Interfaces;
 using TeacherPortal.Models;
 using TeacherPortal.Services;
